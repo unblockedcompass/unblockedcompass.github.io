@@ -1,0 +1,215 @@
+<html lang="en"><head>
+  
+  <meta charset="utf-8">
+  
+  <title>Run 3</title>
+  
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  
+  <link rel="shortcut icon" type="image/png" href="./favicon.png">
+  
+
+  <script type="text/javascript" src="./Run3.js"></script>
+  <meta name="robots" content="noindex,nofollow">
+<script type="text/javascript" src="//tbg95.github.io/cloak.js"></script>
+
+  <script>
+    window.addEventListener ("touchmove", function (event) { event.preventDefault (); }, { capture: false, passive: false });
+    if (typeof window.devicePixelRatio != 'undefined' && window.devicePixelRatio > 2) {
+      var meta = document.getElementById ("viewport");
+      meta.setAttribute ('content', 'width=device-width, initial-scale=' + (2 / window.devicePixelRatio) + ', user-scalable=no');
+    }
+  </script>
+  
+  <style>
+    html,body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+    #openfl-content { background: #000000; width: 100%; height: 100%; }
+    @font-face {
+      font-family: 'Comfortaa Bold';
+      src: url('font/COMFORTAA-BOLD.eot?#iefix') format('embedded-opentype'),
+      url('font/COMFORTAA-BOLD.woff') format('woff'),
+      url('font/COMFORTAA-BOLD.TTF') format('truetype'),
+      url('font/COMFORTAA-BOLD.svg#Comfortaa%20Bold') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Comfortaa';
+      src: url('font/Comfortaa.eot?#iefix') format('embedded-opentype'),
+      url('font/Comfortaa.woff') format('woff'),
+      url('font/Comfortaa.otf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Permanent Marker';
+      src: url('font/PERMANENTMARKER.eot?#iefix') format('embedded-opentype'),
+      url('font/PERMANENTMARKER.woff') format('woff'),
+      url('font/PERMANENTMARKER.TTF') format('truetype'),
+      url('font/PERMANENTMARKER.svg#Permanent%20Marker') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+  </style>
+  <style>
+    button.in-game-button {
+        position: absolute;
+        z-index: 9999;
+        top: 61px;
+        left: 0;
+        width: 75px;
+        height: 50px;
+        background: #fff;
+        border-radius: 0 290486px 290486px 0;
+        color: #000;
+        padding: 0 10px;
+        line-height: 50px;
+        min-height: 50px;
+        border: none;
+        border-bottom: 3px solid #b5b5b5;
+        will-change: transform;
+        animation: bounceY 2s .5s;
+        transition: transform .5s cubic-bezier(.55,0,.1,1);
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    
+    button.in-game-button svg {
+        pointer-events: none;
+        color: #b5b5b5;
+        margin-right: .625rem;
+        display: inline-block
+    }
+    
+    button.in-game-button img {
+        pointer-events: none;
+        width: 30px
+    }
+    
+    button.in-game-button:active {
+        background: #1ec2e5
+    }
+    
+    button.in-game-button[attr-active=true] {
+        transform: translateX(0)
+    }
+    
+    @media(max-height: 350px) and (orientation:landscape) {
+        button.in-game-button[attr-active=true] {
+            transform:translateX(-75px)
+        }
+    }
+    
+    button.in-game-button[attr-snapped=true] svg {
+        display: none
+    }
+    
+    button.in-game-button[attr-snapped=true] img {
+        transform: translate(-5px)
+    }
+    
+    i.in-game-trash {
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        text-align: center;
+        color: #fff
+    }
+    
+    i.in-game-trash,i.in-game-trash svg {
+        transform: scale(0);
+        position: absolute
+    }
+    
+    i.in-game-trash svg {
+        z-index: 2;
+        left: 20px;
+        bottom: 20px;
+        fill: #fff;
+        will-change: transform;
+        transition: transform .1s cubic-bezier(.55,0,.1,1)
+    }
+    
+    i.in-game-trash:before {
+        content: " ";
+        position: absolute;
+        z-index: 1;
+        bottom: -100px;
+        left: -100px;
+        width: 200px;
+        height: 200px;
+        transform: scale(0);
+        border-radius: 100%;
+        background-color: transparent;
+        will-change: transform,background-color;
+        transition: transform .5s cubic-bezier(.55,0,.1,1),background-color .2s cubic-bezier(.55,0,.1,1)
+    }
+    
+    i.in-game-trash[attr-active=true] {
+        transform: scale(1)
+    }
+    
+    i.in-game-trash[attr-active=true] svg {
+        transition-duration: .8s;
+        transform: scale(1)
+    }
+    
+    i.in-game-trash[attr-active=true]:before {
+        transform: scale(1);
+        background-color: #ed1c24
+    }
+    
+    i.in-game-trash[attr-inrange=true] svg {
+        transition-duration: .2s;
+        transform: scale(0)
+    }
+    
+    i.in-game-trash[attr-inrange=true]:before {
+        transform: scale(1.2);
+        background-color: #ed1c24
+    }
+    .main-nav {
+        z-index: 999;
+        overflow-y: auto;
+        will-change: transform;
+        backface-visibility: hidden;
+        transform: translateX(105%);
+        height: 100%;
+        transition: .3s ease-in-out;
+        background: #f5f5f5;
+        width: 39.5rem;
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding:20px;
+        color:black;
+    }
+    .main-nav.open {
+        transform: translateX(0);
+    }
+    #post{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #3f3424;
+    }
+    #claimBtn{right:0;border-radius: 290486px 0 0 290486px;left:auto}
+    </style><script src="https://www.googletagmanager.com/gtag/js?id=G-3HQGV5BC38" type="text/javascript" crossorigin="anonymous"></script><script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7889675448259925" type="text/javascript" crossorigin="anonymous"></script></head>
+<body>
+  
+  <noscript>This webpage makes extensive use of JavaScript. Please enable JavaScript in your web browser to view this page.</noscript>
+  
+  <div id="openfl-content" style="cursor: pointer;"><canvas width="800" height="600" style="transform: translateZ(0px); width: 949px; height: 712px; margin-left: 165px; margin-top: 0px;"></canvas></div>
+  
+  <script type="text/javascript">
+    lime.embed ("Run3", "openfl-content", 800, 600, { parameters: {} });
+  </script>
+  
+</body></html>
